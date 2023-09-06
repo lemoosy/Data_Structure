@@ -3,7 +3,7 @@
 #include "Settings.h"
 
 /// @brief Type valeur d'un noeud dans un arbre (AVL).
-typedef int TElement;
+typedef int AVLData;
 
 /// @brief Classe représentant un noeud dans un arbre (AVL).
 class AVLNode
@@ -11,7 +11,7 @@ class AVLNode
 public:
 	
 	/// @brief Valeur du noeud.
-	TElement m_value;
+	AVLData m_value;
 
 	/// @brief Pointeur vers le parent.
 	AVLNode* m_parent;
@@ -25,7 +25,9 @@ public:
 	/// @brief Hauteur du noeud.
 	int m_height;
 
-	AVLNode(TElement value);
+	AVLNode(AVLData value);
+
+	~AVLNode();
 
 	/// @brief Lie un noeud à gauche du noeud.
 	void SetLeft(AVLNode* node);
@@ -41,9 +43,7 @@ public:
 	int GetBalance(void) const;
 
 	/// @brief Affiche le noeud et son sous-arbre (méthode récursive).
-	void PrintRec(void);
-
-	~AVLNode();
+	void PrintRec(void) const;
 };
 
 /// @brief Classe représentant un arbre (AVL).
@@ -74,6 +74,8 @@ public:
 
 	AVLTree();
 
+	~AVLTree();
+
 	/// @brief Renvoie la taille de l'arbre (nombre de noeuds).
 	inline int GetSize() const
 	{
@@ -88,14 +90,13 @@ public:
 
 	/// @brief Recherche une valeur dans l'arbre en log(n).
 	/// @return true si la valeur existe, false sinon.
-	bool Find(TElement value, AVLNode** res) const;
+	bool Find(AVLData value, AVLNode** res) const;
 
 	/// @brief Insère une valeur dans l'arbre en log(n).
-	/// @return true si la valeur est ajoutée, false sinon (s'il existe déjà).
-	bool Insert(TElement value);
+	/// @return NULL si la valeur est ajoutée,
+	/// sinon renvoie le pointeur de la valeur précédente.
+	AVLData* Insert(AVLData value);
 	
 	/// @brief Affiche l'arbre.
 	void Print(void);
-
-	~AVLTree();
 };

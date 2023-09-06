@@ -2,13 +2,26 @@
 
 // -------------------- AVLNode --------------------
 
-AVLNode::AVLNode(TElement value)
+AVLNode::AVLNode(AVLData value)
 {
 	m_value = value;
 	m_parent = nullptr;
 	m_left = nullptr;
 	m_right = nullptr;
 	m_height = 0;
+}
+
+AVLNode::~AVLNode()
+{
+	if (m_left)
+	{
+		delete m_left;
+	}
+
+	if (m_right)
+	{
+		delete m_right;
+	}
 }
 
 void AVLNode::SetLeft(AVLNode* node)
@@ -47,7 +60,7 @@ int AVLNode::GetBalance(void) const
 	return (R - L);
 }
 
-void AVLNode::PrintRec(void)
+void AVLNode::PrintRec(void) const
 {
 	if (m_left)
 	{
@@ -59,19 +72,6 @@ void AVLNode::PrintRec(void)
 	if (m_right)
 	{
 		m_right->PrintRec();
-	}
-}
-
-AVLNode::~AVLNode()
-{
-	if (m_left)
-	{
-		delete m_left;
-	}
-
-	if (m_right)
-	{
-		delete m_right;
 	}
 }
 
@@ -156,11 +156,16 @@ void AVLTree::Balance(AVLNode* node)
 
 AVLTree::AVLTree(void)
 {
-	m_root = nullptr;
 	m_size = 0;
+	m_root = nullptr;
 }
 
-bool AVLTree::Find(TElement value, AVLNode** res) const
+AVLTree::~AVLTree()
+{
+	delete m_root;
+}
+
+bool AVLTree::Find(AVLData value, AVLNode** res) const
 {
 	*res = nullptr;
 	
@@ -188,7 +193,7 @@ bool AVLTree::Find(TElement value, AVLNode** res) const
 	return false;
 }
 
-bool AVLTree::Insert(TElement value)
+AVLData* AVLTree::Insert(AVLData value)
 {
 	if (IsEmpty())
 	{
@@ -229,9 +234,4 @@ void AVLTree::Print(void)
 	printf("(size=%d) : ", m_size);
 	if (m_root) m_root->PrintRec();
 	putchar('\n');
-}
-
-AVLTree::~AVLTree()
-{
-	delete m_root;
 }
