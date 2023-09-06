@@ -154,6 +154,12 @@ void AVLTree::Balance(AVLNode* node)
 	}
 }
 
+AVLTree::AVLTree(void)
+{
+	m_root = nullptr;
+	m_size = 0;
+}
+
 bool AVLTree::Find(TElement value, AVLNode** res) const
 {
 	*res = nullptr;

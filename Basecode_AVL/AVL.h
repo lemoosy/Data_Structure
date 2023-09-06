@@ -72,6 +72,8 @@ private:
 
 public:
 
+	AVLTree();
+
 	/// @brief Renvoie la taille de l'arbre (nombre de noeuds).
 	inline int GetSize() const
 	{
