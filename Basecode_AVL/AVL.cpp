@@ -205,7 +205,9 @@ AVLData* AVLTree::Insert(AVLData value)
 
 		if (Find(value, &res))
 		{
-			return false;
+			AVLData* old = &(res->m_value);
+			res->m_value = value;
+			return old;
 		}
 		else
 		{
@@ -226,7 +228,7 @@ AVLData* AVLTree::Insert(AVLData value)
 
 	m_size++;
 
-	return true;
+	return NULL;
 }
 
 void AVLTree::Print(void)
