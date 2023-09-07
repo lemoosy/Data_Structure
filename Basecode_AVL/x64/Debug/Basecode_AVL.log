@@ -1,4 +1,128 @@
-﻿  AVL.cpp
-  main.cpp
-  Génération de code en cours...
-  Basecode_AVL.vcxproj -> C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_Graph\x64\Debug\Basecode_AVL.lib
+﻿  main.cpp
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'void AVLTree<int>::Replace(AVLNode<T> *,AVLNode<T> *,AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(61,7): message : voir la déclaration de 'AVLTree<int>::Replace'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'void AVLTree<int>::RotateLeft(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(64,7): message : voir la déclaration de 'AVLTree<int>::RotateLeft'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'void AVLTree<int>::RotateRight(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(67,7): message : voir la déclaration de 'AVLTree<int>::RotateRight'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'void AVLTree<int>::Balance(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(70,7): message : voir la déclaration de 'AVLTree<int>::Balance'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'AVLTree<int>::AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(74,2): message : voir la déclaration de 'AVLTree<int>::AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'AVLTree<int>::~AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(76,3): message : voir la déclaration de 'AVLTree<int>::~AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'bool AVLTree<int>::Find(T,AVLNode<T> **) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(92,7): message : voir la déclaration de 'AVLTree<int>::Find'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'T *AVLTree<T>::Insert(T)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=int
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(97,5): message : voir la déclaration de 'AVLTree<int>::Insert'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(103,28): warning C4661: 'void AVLTree<int>::Print(void) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(100,7): message : voir la déclaration de 'AVLTree<int>::Print'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'void AVLTree<float>::Replace(AVLNode<T> *,AVLNode<T> *,AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(61,7): message : voir la déclaration de 'AVLTree<float>::Replace'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'void AVLTree<float>::RotateLeft(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(64,7): message : voir la déclaration de 'AVLTree<float>::RotateLeft'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'void AVLTree<float>::RotateRight(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(67,7): message : voir la déclaration de 'AVLTree<float>::RotateRight'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'void AVLTree<float>::Balance(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(70,7): message : voir la déclaration de 'AVLTree<float>::Balance'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'AVLTree<float>::AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(74,2): message : voir la déclaration de 'AVLTree<float>::AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'AVLTree<float>::~AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(76,3): message : voir la déclaration de 'AVLTree<float>::~AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'bool AVLTree<float>::Find(T,AVLNode<T> **) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(92,7): message : voir la déclaration de 'AVLTree<float>::Find'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'T *AVLTree<T>::Insert(T)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=float
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(97,5): message : voir la déclaration de 'AVLTree<float>::Insert'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(104,30): warning C4661: 'void AVLTree<float>::Print(void) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(100,7): message : voir la déclaration de 'AVLTree<float>::Print'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'void AVLTree<char>::Replace(AVLNode<T> *,AVLNode<T> *,AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(61,7): message : voir la déclaration de 'AVLTree<char>::Replace'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'void AVLTree<char>::RotateLeft(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(64,7): message : voir la déclaration de 'AVLTree<char>::RotateLeft'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'void AVLTree<char>::RotateRight(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(67,7): message : voir la déclaration de 'AVLTree<char>::RotateRight'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'void AVLTree<char>::Balance(AVLNode<T> *)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(70,7): message : voir la déclaration de 'AVLTree<char>::Balance'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'AVLTree<char>::AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(74,2): message : voir la déclaration de 'AVLTree<char>::AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'AVLTree<char>::~AVLTree(void)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(76,3): message : voir la déclaration de 'AVLTree<char>::~AVLTree'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'bool AVLTree<char>::Find(T,AVLNode<T> **) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(92,7): message : voir la déclaration de 'AVLTree<char>::Find'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'T *AVLTree<T>::Insert(T)' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+          with
+          [
+              T=char
+          ]
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(97,5): message : voir la déclaration de 'AVLTree<char>::Insert'
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(105,29): warning C4661: 'void AVLTree<char>::Print(void) const' : aucune définition appropriée pour la demande d'instanciation explicite du modèle
+C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\Basecode_AVL\AVL.h(100,7): message : voir la déclaration de 'AVLTree<char>::Print'
+  Basecode_AVL.vcxproj -> C:\Users\PC Lemoosy\OneDrive\Bureau\Basecode\3A\C++\Basecode_AVL\x64\Debug\Basecode_AVL.exe
