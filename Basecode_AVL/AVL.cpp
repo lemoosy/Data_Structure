@@ -2,8 +2,8 @@
 
 // ------------------------------ AVLNode ------------------------------
 
-template <typename T>
-AVLNode<T>::AVLNode(T value)
+template <typename AVLData>
+AVLNode<AVLData>::AVLNode(AVLData value)
 {
 	m_value = value;
 	m_parent = nullptr;
@@ -12,8 +12,10 @@ AVLNode<T>::AVLNode(T value)
 	m_height = 0;
 }
 
-template <typename T>
-AVLNode<T>::~AVLNode()
+
+
+template<typename AVLData>
+void AVLNode<AVLData>::DestroyRec(void)
 {
 	if (m_left)
 	{
@@ -26,8 +28,8 @@ AVLNode<T>::~AVLNode()
 	}
 }
 
-template <typename T>
-void AVLNode<T>::SetLeft(AVLNode<T>* node)
+template <typename AVLData>
+void AVLNode<AVLData>::SetLeft(AVLNode<AVLData>* node)
 {
 	m_left = node;
 
@@ -37,8 +39,8 @@ void AVLNode<T>::SetLeft(AVLNode<T>* node)
 	}
 }
 
-template <typename T>
-void AVLNode<T>::SetRight(AVLNode<T>* node)
+template <typename AVLData>
+void AVLNode<AVLData>::SetRight(AVLNode<AVLData>* node)
 {
 	m_right = node;
 
@@ -48,8 +50,8 @@ void AVLNode<T>::SetRight(AVLNode<T>* node)
 	}
 }
 
-template <typename T>
-void AVLNode<T>::UpdateHeight(void)
+template <typename AVLData>
+void AVLNode<AVLData>::UpdateHeight(void)
 {
 	int L = (m_left ? m_left->m_height : -1);
 	int R = (m_right ? m_right->m_height : -1);
@@ -57,8 +59,8 @@ void AVLNode<T>::UpdateHeight(void)
 	m_height = max(L, R) + 1;
 }
 
-template <typename T>
-int AVLNode<T>::GetBalance(void) const
+template <typename AVLData>
+int AVLNode<AVLData>::GetBalance(void) const
 {
 	int L = (m_left ? m_left->m_height : -1);
 	int R = (m_right ? m_right->m_height : -1);
@@ -66,26 +68,56 @@ int AVLNode<T>::GetBalance(void) const
 	return (R - L);
 }
 
-template <typename T>
-void AVLNode<T>::PrintRec(void) const
+template<typename AVLData>
+void AVLNode<AVLData>::PrintTreeRec(char ch, int level) const
 {
-	if (m_left)
+	for (int i = 0; i < level; i++)
 	{
-		m_left->PrintRec();
+		putchar('\t');
 	}
 
-	cout << m_value << " ";
+	cout << ch << " : " << m_value << endl;
+
+	if (m_left)
+	{
+		m_left->PrintTreeRec('L', level + 1);
+	}
 
 	if (m_right)
 	{
-		m_right->PrintRec();
+		m_right->PrintTreeRec('R', level + 1);
+	}
+}
+
+template <typename AVLData>
+void AVLNode<AVLData>::PrintListRec(void) const
+{
+	if (m_left)
+	{
+		m_left->PrintListRec();
+	}
+
+	if (m_parent)
+	{
+		cout << m_parent->m_value;
+	}
+	else
+	{
+		cout << "*";
+	}
+
+	cout << " <- " << m_value << " | ";
+
+	if (m_right)
+	{
+		m_right->PrintListRec();
 	}
 }
 
 // ------------------------------ AVLTree ------------------------------
 
-template <typename T>
-void AVLTree<T>::Replace(AVLNode<T>* parent, AVLNode<T>* oldChild, AVLNode<T>* newChild)
+template <typename AVLData>
+void AVLTree<AVLData>::Replace(AVLNode<AVLData>* parent, AVLNode<AVLData>* oldChild, AVLNode<AVLData>* newChild)
 {
 	if (parent)
 	{
@@ -93,23 +125,28 @@ void AVLTree<T>::Replace(AVLNode<T>* parent, AVLNode<T>* oldChild, AVLNode<T>* n
 		{
 			parent->SetLeft(newChild);
 		}
-		else
+		else if (parent->m_right == oldChild)
 		{
 			parent->SetRight(newChild);
+		}
+		else
+		{
+			abort();
 		}
 	}
 	else
 	{
-		m_root = newChild;
+		if (newChild)
 		newChild->m_parent = nullptr;
+		m_root = newChild;
 	}
 }
 
-template <typename T>
-void AVLTree<T>::RotateLeft(AVLNode<T>* node)
+template <typename AVLData>
+void AVLTree<AVLData>::RotateLeft(AVLNode<AVLData>* node)
 {
-	AVLNode<T>* parent = node->m_parent;
-	AVLNode<T>* child = node->m_right;
+	AVLNode<AVLData>* parent = node->m_parent;
+	AVLNode<AVLData>* child = node->m_right;
 
 	node->SetRight(child->m_left);
 	child->SetLeft(node);
@@ -119,11 +156,11 @@ void AVLTree<T>::RotateLeft(AVLNode<T>* node)
 	child->UpdateHeight();
 }
 
-template <typename T>
-void AVLTree<T>::RotateRight(AVLNode<T>* node)
+template <typename AVLData>
+void AVLTree<AVLData>::RotateRight(AVLNode<AVLData>* node)
 {
-	AVLNode<T>* parent = node->m_parent;
-	AVLNode<T>* child = node->m_left;
+	AVLNode<AVLData>* parent = node->m_parent;
+	AVLNode<AVLData>* child = node->m_left;
 
 	node->SetLeft(child->m_right);
 	child->SetRight(node);
@@ -133,8 +170,8 @@ void AVLTree<T>::RotateRight(AVLNode<T>* node)
 	child->UpdateHeight();
 }
 
-template <typename T>
-void AVLTree<T>::Balance(AVLNode<T>* node)
+template <typename AVLData>
+void AVLTree<AVLData>::Balance(AVLNode<AVLData>* node)
 {
 	while (node)
 	{
@@ -165,36 +202,50 @@ void AVLTree<T>::Balance(AVLNode<T>* node)
 	}
 }
 
-template <typename T>
-AVLTree<T>::AVLTree()
+template <typename AVLData>
+AVLTree<AVLData>::AVLTree()
 {
 	m_size = 0;
 	m_root = nullptr;
 }
 
-template <typename T>
-AVLTree<T>::~AVLTree()
+template <typename AVLData>
+AVLTree<AVLData>::~AVLTree()
 {
 	delete m_root;
 }
 
-template <typename T>
-bool AVLTree<T>::Find(T value, AVLNode<T>** res) const
+template <typename AVLData>
+bool AVLTree<AVLData>::Find(AVLData value, AVLNode<AVLData>** res) const
 {
-	*res = nullptr;
-	
-	AVLNode<T>* curr = m_root;
+	if (m_root == nullptr)
+	{
+		*res = nullptr;
+		return false;
+	}
 
-	while (curr)
+	AVLNode<AVLData>* curr = m_root;
+
+	while (true)
 	{
 		if (value < curr->m_value)
 		{
-			*res = curr;
+			if (curr->m_left == nullptr)
+			{
+				*res = curr;
+				return false;
+			}
+
 			curr = curr->m_left;
 		}
 		else if (value > curr->m_value)
 		{
-			*res = curr;
+			if (curr->m_right == nullptr)
+			{
+				*res = curr;
+				return false;
+			}
+
 			curr = curr->m_right;
 		}
 		else
@@ -204,29 +255,29 @@ bool AVLTree<T>::Find(T value, AVLNode<T>** res) const
 		}
 	}
 
-	return false;
+	abort();
 }
 
-template <typename T>
-T* AVLTree<T>::Insert(T value)
+template <typename AVLData>
+AVLData* AVLTree<AVLData>::Insert(AVLData value)
 {
 	if (IsEmpty())
 	{
-		m_root = new AVLNode<T>(value);
+		m_root = new AVLNode<AVLData>(value);
 	}
 	else
 	{
-		AVLNode<T>* res = nullptr;
+		AVLNode<AVLData>* res = nullptr;
 
 		if (Find(value, &res))
 		{
-			T* old = &(res->m_value);
+			AVLData* old = &(res->m_value);
 			res->m_value = value;
 			return old;
 		}
 		else
 		{
-			AVLNode<T>* node = new AVLNode<T>(value);
+			AVLNode<AVLData>* node = new AVLNode<AVLData>(value);
 
 			if (value < res->m_value)
 			{
@@ -246,14 +297,73 @@ T* AVLTree<T>::Insert(T value)
 	return NULL;
 }
 
-template <typename T>
-void AVLTree<T>::Print(void) const
+template<typename AVLData>
+bool AVLTree<AVLData>::Remove(AVLData value)
+{
+	AVLNode<AVLData>* res = nullptr;
+
+	if (IsEmpty() || !Find(value, &res))
+	{
+		return false;
+	}
+
+	AVLNode<AVLData>* start = nullptr;
+
+	if (res->m_left == nullptr)
+	{
+		Replace(res->m_parent, res, res->m_right);
+		start = res->m_parent;
+		delete res;
+	}
+	else if (res->m_right == nullptr)
+	{
+		Replace(res->m_parent, res, res->m_left);
+		start = res->m_parent;
+		delete res;
+	}
+	else
+	{
+		AVLNode<AVLData>* curr = res->m_left;
+
+		while (curr->m_right != nullptr)
+		{
+			curr = curr->m_right;
+		}
+
+		res->m_value = curr->m_value;
+		Replace(curr->m_parent, curr, curr->m_left);
+		start = curr->m_parent;
+		delete curr;
+	}
+
+	Balance(start);
+
+	m_size--;
+
+	return true;
+}
+
+template <typename AVLData>
+void AVLTree<AVLData>::PrintList(void) const
 {
 	printf("(size=%d) : ", m_size);
 
 	if (m_root)
 	{
-		m_root->PrintRec();
+		m_root->PrintListRec();
+	}
+
+	putchar('\n');
+}
+
+template<typename AVLData>
+void AVLTree<AVLData>::PrintTree(void) const
+{
+	printf("(size=%d) : \n\n", m_size);
+
+	if (m_root)
+	{
+		m_root->PrintTreeRec();
 	}
 
 	putchar('\n');

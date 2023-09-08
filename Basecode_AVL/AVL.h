@@ -3,35 +3,36 @@
 #include "Settings.h"
 
 /// @brief Classe représentant un noeud dans un arbre (AVL).
-template <typename T>
+template <typename AVLData>
 class AVLNode
 {
 public:
 	
 	/// @brief Valeur du noeud.
-	T m_value;
+	AVLData m_value;
 
 	/// @brief Pointeur vers le parent.
-	AVLNode<T>* m_parent;
+	AVLNode<AVLData>* m_parent;
 
 	/// @brief Pointeur vers l'enfant de gauche.
-	AVLNode<T>* m_left;
+	AVLNode<AVLData>* m_left;
 
 	/// @brief Pointeur vers l'enfant de droite.
-	AVLNode<T>* m_right;
+	AVLNode<AVLData>* m_right;
 
 	/// @brief Hauteur du noeud.
 	int m_height;
 
-	AVLNode(T value);
+	AVLNode(AVLData value);
 
-	~AVLNode();
+	/// @brief Supprimer le noeud et son sous-arbre (méthode récursive).
+	void DestroyRec(void);
 
 	/// @brief Lie un noeud à gauche du noeud.
-	void SetLeft(AVLNode<T>* node);
+	void SetLeft(AVLNode<AVLData>* node);
 
 	/// @brief Lie un noeud à droite du noeud.
-	void SetRight(AVLNode<T>* node);
+	void SetRight(AVLNode<AVLData>* node);
 
 	/// @brief Met à jour la hauteur du noeud [max(L, R) + 1].
 	void UpdateHeight(void);
@@ -41,11 +42,14 @@ public:
 	int GetBalance(void) const;
 
 	/// @brief Affiche le noeud et son sous-arbre (méthode récursive).
-	void PrintRec(void) const;
+	void PrintListRec(void) const;
+
+
+	void PrintTreeRec(char ch = '*', int level = 0) const;
 };
 
 /// @brief Classe représentant un arbre (AVL).
-template <typename T>
+template <typename AVLData>
 class AVLTree
 {
 private:
@@ -54,20 +58,23 @@ private:
 	int m_size;
 
 	/// @brief Racine de l'arbre.
-	AVLNode<T>* m_root;
+	AVLNode<AVLData>* m_root;
 	
 	/// @brief Remplace 'oldChild' par 'newChild',
 	/// 'parent' est le parent de 'oldChild'.
-	void Replace(AVLNode<T>* parent, AVLNode<T>* oldChild, AVLNode<T>* newChild);
+	void Replace(AVLNode<AVLData>* parent, AVLNode<AVLData>* oldChild, AVLNode<AVLData>* newChild);
 
 	/// @brief Fait une rotation à gauche (ce noeud et son enfant de droite).
-	void RotateLeft(AVLNode<T>* node);
+	void RotateLeft(AVLNode<AVLData>* node);
 
 	/// @brief Fait une rotation à droite (ce noeud et son enfant de gauche).
-	void RotateRight(AVLNode<T>* node);
+	void RotateRight(AVLNode<AVLData>* node);
 
 	/// @brief Ré-équilibre l'arbre.
-	void Balance(AVLNode<T>* node);
+	void Balance(AVLNode<AVLData>* node);
+
+	/// @brief Affiche les données sous forme d'un arbre (méthode récurcive).
+	void PrintTreeRec(int level = 0) const;
 
 public:
 
@@ -88,16 +95,23 @@ public:
 	}
 
 	/// @brief Recherche une valeur dans l'arbre en log(n).
-	/// @return true si la valeur existe, false sinon.
-	bool Find(T value, AVLNode<T>** res) const;
+	/// @return true si la valeur existe, sinon false.
+	bool Find(AVLData value, AVLNode<AVLData>** res) const;
 
 	/// @brief Insère une valeur dans l'arbre en log(n).
 	/// @return NULL si la valeur est ajoutée,
 	/// sinon renvoie le pointeur de la valeur précédente.
-	T* Insert(T value);
+	AVLData* Insert(AVLData value);
+
+	/// @brief Supprime une valeur dans l'arbre en log(n).
+	/// @return true si la valeur est supprimée, sinon false.
+	bool Remove(AVLData value);
 	
-	/// @brief Affiche l'arbre.
-	void Print(void) const;
+	/// @brief Affiche les données sous forme d'une liste.
+	void PrintList(void) const;
+
+	/// @brief Affiche les données sous forme d'un arbre.
+	void PrintTree(void) const;
 };
 
 template class AVLTree<int>;

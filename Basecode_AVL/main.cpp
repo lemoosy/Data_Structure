@@ -5,23 +5,21 @@ using namespace std;
 
 int main()
 {
+	srand(time(NULL));
+
 	AVLTree<int> tree;
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		tree.Insert(rand() % 100);
+		tree.Insert(i);
 	}
 
-	tree.Print();
-
-	AVLTree<char> tree2;
-
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		tree2.Insert(rand() % 256);
+		tree.Remove(i);
 	}
 
-	tree2.Print();
+	tree.PrintList();
 
 	return EXIT_SUCCESS;
 }
