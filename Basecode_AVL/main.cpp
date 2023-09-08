@@ -11,12 +11,15 @@ int main()
 
 	for (int i = 0; i < 30; i++)
 	{
-		tree.Insert(i);
+		int* value = new int(i);
+		tree.Insert(value);
 	}
 
 	for (int i = 0; i < 30; i++)
 	{
-		tree.Remove(i);
+		int* value = new int(i);
+		tree.Remove(value);
+		delete value;
 	}
 
 	tree.PrintList();

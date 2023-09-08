@@ -3,7 +3,7 @@
 // ------------------------------ AVLNode ------------------------------
 
 template <typename AVLData>
-AVLNode<AVLData>::AVLNode(AVLData value)
+AVLNode<AVLData>::AVLNode(AVLData* value)
 {
 	m_value = value;
 	m_parent = nullptr;
@@ -12,19 +12,27 @@ AVLNode<AVLData>::AVLNode(AVLData value)
 	m_height = 0;
 }
 
-
+template<typename AVLData>
+AVLNode<AVLData>::~AVLNode()
+{
+	delete m_value;
+}
 
 template<typename AVLData>
 void AVLNode<AVLData>::DestroyRec(void)
 {
 	if (m_left)
 	{
+		m_left->DestroyRec();
 		delete m_left;
+		m_left = nullptr;
 	}
 
 	if (m_right)
 	{
+		m_right->DestroyRec();
 		delete m_right;
+		m_right = nullptr;
 	}
 }
 
@@ -68,27 +76,6 @@ int AVLNode<AVLData>::GetBalance(void) const
 	return (R - L);
 }
 
-template<typename AVLData>
-void AVLNode<AVLData>::PrintTreeRec(char ch, int level) const
-{
-	for (int i = 0; i < level; i++)
-	{
-		putchar('\t');
-	}
-
-	cout << ch << " : " << m_value << endl;
-
-	if (m_left)
-	{
-		m_left->PrintTreeRec('L', level + 1);
-	}
-
-	if (m_right)
-	{
-		m_right->PrintTreeRec('R', level + 1);
-	}
-}
-
 template <typename AVLData>
 void AVLNode<AVLData>::PrintListRec(void) const
 {
@@ -97,21 +84,17 @@ void AVLNode<AVLData>::PrintListRec(void) const
 		m_left->PrintListRec();
 	}
 
-	if (m_parent)
-	{
-		cout << m_parent->m_value;
-	}
-	else
-	{
-		cout << "*";
-	}
-
-	cout << " <- " << m_value << " | ";
+	cout << *m_value << " ";
 
 	if (m_right)
 	{
 		m_right->PrintListRec();
 	}
+}
+
+template<typename AVLData>
+void AVLNode<AVLData>::PrintTreeRec(int level) const
+{
 }
 
 // ------------------------------ AVLTree ------------------------------
@@ -125,19 +108,18 @@ void AVLTree<AVLData>::Replace(AVLNode<AVLData>* parent, AVLNode<AVLData>* oldCh
 		{
 			parent->SetLeft(newChild);
 		}
-		else if (parent->m_right == oldChild)
-		{
-			parent->SetRight(newChild);
-		}
 		else
 		{
-			abort();
+			parent->SetRight(newChild);
 		}
 	}
 	else
 	{
 		if (newChild)
-		newChild->m_parent = nullptr;
+		{
+			newChild->m_parent = nullptr;
+		}
+
 		m_root = newChild;
 	}
 }
@@ -212,11 +194,15 @@ AVLTree<AVLData>::AVLTree()
 template <typename AVLData>
 AVLTree<AVLData>::~AVLTree()
 {
-	delete m_root;
+	if (m_root)
+	{
+		m_root->DestroyRec();
+		delete m_root;
+	}
 }
 
 template <typename AVLData>
-bool AVLTree<AVLData>::Find(AVLData value, AVLNode<AVLData>** res) const
+bool AVLTree<AVLData>::Find(AVLData* value, AVLNode<AVLData>** res) const
 {
 	if (m_root == nullptr)
 	{
@@ -228,7 +214,7 @@ bool AVLTree<AVLData>::Find(AVLData value, AVLNode<AVLData>** res) const
 
 	while (true)
 	{
-		if (value < curr->m_value)
+		if (*value < *(curr->m_value))
 		{
 			if (curr->m_left == nullptr)
 			{
@@ -238,7 +224,7 @@ bool AVLTree<AVLData>::Find(AVLData value, AVLNode<AVLData>** res) const
 
 			curr = curr->m_left;
 		}
-		else if (value > curr->m_value)
+		else if (*value > *(curr->m_value))
 		{
 			if (curr->m_right == nullptr)
 			{
@@ -254,12 +240,10 @@ bool AVLTree<AVLData>::Find(AVLData value, AVLNode<AVLData>** res) const
 			return true;
 		}
 	}
-
-	abort();
 }
 
 template <typename AVLData>
-AVLData* AVLTree<AVLData>::Insert(AVLData value)
+AVLData* AVLTree<AVLData>::Insert(AVLData* value)
 {
 	if (IsEmpty())
 	{
@@ -271,7 +255,7 @@ AVLData* AVLTree<AVLData>::Insert(AVLData value)
 
 		if (Find(value, &res))
 		{
-			AVLData* old = &(res->m_value);
+			AVLData* old = res->m_value;
 			res->m_value = value;
 			return old;
 		}
@@ -279,7 +263,7 @@ AVLData* AVLTree<AVLData>::Insert(AVLData value)
 		{
 			AVLNode<AVLData>* node = new AVLNode<AVLData>(value);
 
-			if (value < res->m_value)
+			if (*value < *(res->m_value))
 			{
 				res->SetLeft(node);
 			}
@@ -298,7 +282,15 @@ AVLData* AVLTree<AVLData>::Insert(AVLData value)
 }
 
 template<typename AVLData>
-bool AVLTree<AVLData>::Remove(AVLData value)
+bool AVLTree<AVLData>::IsIn(AVLData* value)
+{
+	AVLNode<AVLData>* res = nullptr;
+
+	return Find(value, &res);
+}
+
+template<typename AVLData>
+bool AVLTree<AVLData>::Remove(AVLData* value)
 {
 	AVLNode<AVLData>* res = nullptr;
 
@@ -325,7 +317,7 @@ bool AVLTree<AVLData>::Remove(AVLData value)
 	{
 		AVLNode<AVLData>* curr = res->m_left;
 
-		while (curr->m_right != nullptr)
+		while (curr->m_right)
 		{
 			curr = curr->m_right;
 		}
@@ -359,12 +351,4 @@ void AVLTree<AVLData>::PrintList(void) const
 template<typename AVLData>
 void AVLTree<AVLData>::PrintTree(void) const
 {
-	printf("(size=%d) : \n\n", m_size);
-
-	if (m_root)
-	{
-		m_root->PrintTreeRec();
-	}
-
-	putchar('\n');
 }

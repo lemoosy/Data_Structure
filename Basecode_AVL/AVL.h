@@ -9,7 +9,7 @@ class AVLNode
 public:
 	
 	/// @brief Valeur du noeud.
-	AVLData m_value;
+	AVLData* m_value;
 
 	/// @brief Pointeur vers le parent.
 	AVLNode<AVLData>* m_parent;
@@ -23,9 +23,11 @@ public:
 	/// @brief Hauteur du noeud.
 	int m_height;
 
-	AVLNode(AVLData value);
+	AVLNode(AVLData* value);
 
-	/// @brief Supprimer le noeud et son sous-arbre (méthode récursive).
+	~AVLNode();
+
+	/// @brief Détruit SEULEMENT le sous-arbre du noeud (méthode récursive).
 	void DestroyRec(void);
 
 	/// @brief Lie un noeud à gauche du noeud.
@@ -41,11 +43,11 @@ public:
 	/// l'enfant de gauche et l'enfant de droite.
 	int GetBalance(void) const;
 
-	/// @brief Affiche le noeud et son sous-arbre (méthode récursive).
+	/// @brief Affiche le noeud et son sous-arbre sous forme d'une liste (méthode récursive).
 	void PrintListRec(void) const;
 
-
-	void PrintTreeRec(char ch = '*', int level = 0) const;
+	/// @brief Affiche le noeud et son sous-arbre sous forme d'un arbre (méthode récursive).
+	void PrintTreeRec(int level = 0) const;
 };
 
 /// @brief Classe représentant un arbre (AVL).
@@ -70,11 +72,12 @@ private:
 	/// @brief Fait une rotation à droite (ce noeud et son enfant de gauche).
 	void RotateRight(AVLNode<AVLData>* node);
 
-	/// @brief Ré-équilibre l'arbre.
-	void Balance(AVLNode<AVLData>* node);
+	/// @brief Recherche une valeur dans l'arbre en log(n).
+	/// @return true si la valeur existe, false sinon.
+	bool Find(AVLData* value, AVLNode<AVLData>** res) const;
 
-	/// @brief Affiche les données sous forme d'un arbre (méthode récurcive).
-	void PrintTreeRec(int level = 0) const;
+	/// @brief Ré-équilibre l'arbre à partir d'un noeud.
+	void Balance(AVLNode<AVLData>* node);
 
 public:
 
@@ -94,18 +97,18 @@ public:
 		return (m_size == 0);
 	}
 
-	/// @brief Recherche une valeur dans l'arbre en log(n).
-	/// @return true si la valeur existe, sinon false.
-	bool Find(AVLData value, AVLNode<AVLData>** res) const;
-
 	/// @brief Insère une valeur dans l'arbre en log(n).
-	/// @return NULL si la valeur est ajoutée,
-	/// sinon renvoie le pointeur de la valeur précédente.
-	AVLData* Insert(AVLData value);
+	/// @return NULL si la valeur est ajoutée dans l'arbre,
+	/// sinon retourne ET remplace l'ancienne valeur.
+	AVLData* Insert(AVLData* value);
+
+	/// @brief Vérifie si une valeur est dans l'arbre en log(n).
+	/// @return true si la valeur se trouve dans l'arbre, false sinon.
+	bool IsIn(AVLData* value);
 
 	/// @brief Supprime une valeur dans l'arbre en log(n).
-	/// @return true si la valeur est supprimée, sinon false.
-	bool Remove(AVLData value);
+	/// @return true si la valeur est supprimée, false sinon.
+	bool Remove(AVLData* value);
 	
 	/// @brief Affiche les données sous forme d'une liste.
 	void PrintList(void) const;
