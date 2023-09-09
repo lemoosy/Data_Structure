@@ -25,14 +25,12 @@ void AVLNode<AVLData>::DestroyRec(void)
 	{
 		m_left->DestroyRec();
 		delete m_left;
-		m_left = nullptr;
 	}
 
 	if (m_right)
 	{
 		m_right->DestroyRec();
 		delete m_right;
-		m_right = nullptr;
 	}
 }
 
@@ -95,6 +93,22 @@ void AVLNode<AVLData>::PrintListRec(void) const
 template<typename AVLData>
 void AVLNode<AVLData>::PrintTreeRec(int level) const
 {
+	if (m_right)
+	{
+		m_right->PrintTreeRec(level + 1);
+	}
+
+	for (int i = 0; i < level; i++)
+	{
+		putchar('\t');
+	}
+
+	cout << *m_value << endl;
+
+	if (m_left)
+	{
+		m_left->PrintTreeRec(level + 1);
+	}
 }
 
 // ------------------------------ AVLTree ------------------------------
@@ -351,4 +365,12 @@ void AVLTree<AVLData>::PrintList(void) const
 template<typename AVLData>
 void AVLTree<AVLData>::PrintTree(void) const
 {
+	printf("(size=%d) : \n", m_size);
+
+	if (m_root)
+	{
+		m_root->PrintTreeRec();
+	}
+
+	putchar('\n');
 }

@@ -25,9 +25,10 @@ public:
 
 	AVLNode(AVLData* value);
 
+	/// @brief Détruit la valeur du noeud et le noeud.
 	~AVLNode();
 
-	/// @brief Détruit SEULEMENT le sous-arbre du noeud (méthode récursive).
+	/// @brief Détruit le sous-arbre du noeud (méthode récursive).
 	void DestroyRec(void);
 
 	/// @brief Lie un noeud à gauche du noeud.
@@ -76,7 +77,7 @@ private:
 	/// @return true si la valeur existe, false sinon.
 	bool Find(AVLData* value, AVLNode<AVLData>** res) const;
 
-	/// @brief Ré-équilibre l'arbre à partir d'un noeud.
+	/// @brief Ré-équilibre l'arbre à partir d'un noeud jusqu'à la racine.
 	void Balance(AVLNode<AVLData>* node);
 
 public:
